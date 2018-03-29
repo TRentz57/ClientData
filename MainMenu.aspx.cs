@@ -10,7 +10,7 @@ public partial class MainMenu : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         lblUser.Text = Convert.ToString(Session["username"]);
-        lblPerm.Text = Convert.ToString(Session["permission"]);
+        //lblPerm.Text = Convert.ToString(Session["permission"]);
         if (Convert.ToString(Session["permission"]) == "0")
         {
 
