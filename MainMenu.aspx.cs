@@ -11,6 +11,16 @@ public partial class MainMenu : System.Web.UI.Page
     {
         lblUser.Text = Convert.ToString(Session["lastName"] + ", " + Session["FirstName"]);
         //lblPerm.Text = Convert.ToString(Session["permission"]);
+        if (Session["username"] != null)
+        {
+            //Response.Write("Username = " + Session["username"]);
+
+        }
+        else
+        {
+            Response.Redirect("Login.aspx", false);
+        }
+        //Determines Permissions
         if (Convert.ToString(Session["permission"]) == "0")
         {
 
@@ -28,8 +38,10 @@ public partial class MainMenu : System.Web.UI.Page
 
     protected void btnLogout_Click(object sender, EventArgs e)
     {
-        Session.Clear();
         Session.Abandon();
-        Response.Redirect("Login.aspx");
+        Session.Clear();
+        Session.RemoveAll();
+        System.Web.Security.FormsAuthentication.SignOut();
+        Response.Redirect("Login.aspx",false);
     }
 }
