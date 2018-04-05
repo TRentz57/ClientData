@@ -20,6 +20,7 @@ public partial class ClientData : System.Web.UI.Page
         con.ConnectionString = "Data source=silver.mountunion.edu;initial catalog=ClientData; " +
             "Persist Security Info=True; User ID=ClientData; Password=Helium39day";
         con.Open();
+        //Response.Write("Username = " + Session["username"]);
     }
 
     protected void btnLogin_Click(object sender, EventArgs e)
@@ -50,7 +51,7 @@ public partial class ClientData : System.Web.UI.Page
             Session["firstName"] = firstName;
             Session["lastName"] = lastName;
 
-            Response.Redirect("MainMenu.aspx");
+            Response.Redirect("MainMenu.aspx", false);
         }
         else
         {
