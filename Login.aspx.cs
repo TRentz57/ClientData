@@ -31,11 +31,15 @@ public partial class ClientData : System.Web.UI.Page
         da.Fill(ds,"UserData");
         string perm = "-1";
         string username = "";
+        string firstName = "";
+        string lastName = "";
 
         if (ds.Tables[0].Rows.Count > 0)//Test if any rows username and password match. Search through the column and get permission
         {
             perm = Convert.ToString(ds.Tables[0].Rows[0].ItemArray[2]);
             username = Convert.ToString(ds.Tables[0].Rows[0].ItemArray[3]);
+            firstName = Convert.ToString(ds.Tables[0].Rows[0].ItemArray[0]);
+            lastName = Convert.ToString(ds.Tables[0].Rows[0].ItemArray[1]);
 
             //lblTest.Text = "Data is found";
             //lblPermTest.Text = "perm: " + perm;
@@ -43,6 +47,8 @@ public partial class ClientData : System.Web.UI.Page
 
             Session["permission"] = perm;
             Session["username"] = username;
+            Session["firstName"] = firstName;
+            Session["lastName"] = lastName;
 
             Response.Redirect("MainMenu.aspx");
         }
