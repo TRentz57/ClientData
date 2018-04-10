@@ -47,7 +47,7 @@ public partial class MainMenu : System.Web.UI.Page
 
     protected void btnDataEntry_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Vitals.aspx", false);
+        Response.Redirect("ClientInfo.aspx", false);
         
     }
 }
