@@ -25,15 +25,26 @@ public partial class ClientData : System.Web.UI.Page
 
     protected void btnLogin_Click(object sender, EventArgs e)
     {
+        string perm = "-1";
+        string username = "";
+        string firstName = "";
+        string lastName = "";
+        int maxID = 1;
+
         cmd.CommandText = "SELECT * FROM UserData WHERE Username ='" + txtUsername.Text + 
             "'and Password='" + txtPassword.Text + "'"; //Select Username and password to login. Also pull permission to load correct session
         cmd.Connection = con;
         da.SelectCommand = cmd;
         da.Fill(ds,"UserData");
-        string perm = "-1";
-        string username = "";
-        string firstName = "";
-        string lastName = "";
+
+        //Generate next number for Participant ID
+        //cmd.CommandText = "SELECT ParticipantID FROM Vitals ORDER BY ParticipantID DESC";
+        //SqlDataReader reader = cmd.ExecuteReader();
+        //reader.Read();
+        //maxID = Convert.ToInt32(reader[0]); //gets max value
+        //maxID++; // max value + 1
+        //Session["participantID"] = maxID;
+
 
         if (ds.Tables[0].Rows.Count > 0)//Test if any rows username and password match. Search through the column and get permission
         {
@@ -41,6 +52,7 @@ public partial class ClientData : System.Web.UI.Page
             username = Convert.ToString(ds.Tables[0].Rows[0].ItemArray[3]);
             firstName = Convert.ToString(ds.Tables[0].Rows[0].ItemArray[0]);
             lastName = Convert.ToString(ds.Tables[0].Rows[0].ItemArray[1]);
+
 
             //lblTest.Text = "Data is found";
             //lblPermTest.Text = "perm: " + perm;
