@@ -7,7 +7,6 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
-    String Username = "";
     int max = 1;
 
     protected void Page_Load(object sender, EventArgs e)
@@ -17,6 +16,14 @@ public partial class _Default : System.Web.UI.Page
 
         //Sets participantID to next number in the list
         txtID.Text = Convert.ToString(Session["participantID"]);
+        txtID.ReadOnly = true;
+
+        //Set username to user doing the edit
+        txtUsername.Text = Convert.ToString(Session["username"]);
+        if (Convert.ToInt32(Session["permission"]) == 1 || Convert.ToInt32(Session["permission"]) == 2)
+        {
+            txtUsername.ReadOnly = true;
+        }
     }
     protected void btnVitals_Click(object sender, EventArgs e)
     {
@@ -35,12 +42,6 @@ public partial class _Default : System.Web.UI.Page
         else
         {
             Response.Write(@"<script langauge='text/javascript'>alert('All your data was submitted. Now navigating to Client Info page');</script>");
-            Response.Redirect("ClientInfo.aspx", false);
-            //Setting Values
-            ID = txtID.Text;
-            Username = txtUsername.Text;
-            //Assigning values to session variables
-            Session["Email"] = Username + "@mountunion.edu";
         }
     }
     protected void btnLogout_Click(object sender, EventArgs e)
