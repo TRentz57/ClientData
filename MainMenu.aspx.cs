@@ -44,4 +44,10 @@ public partial class MainMenu : System.Web.UI.Page
         System.Web.Security.FormsAuthentication.SignOut();
         Response.Redirect("Login.aspx",false);
     }
+
+    protected void btnDataEntry_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Vitals.aspx", false);
+        
+    }
 }
