@@ -20,12 +20,12 @@ public partial class TEAM_PROJECT_DataEntry : System.Web.UI.Page
         
         //Adds session variables from Vitals Page
         txtID.Text = Convert.ToString(Session["participantID"]);
-        txtEmail.Text = Convert.ToString(Session["Email"]);
+        txtID.ReadOnly = true;
     }
 
     protected void btnClientInfo_Click(object sender, EventArgs e)
     {
-
+        Response.Redirect("Vitals.aspx", false);
     }
 
     protected void btnLogout_Click(object sender, EventArgs e)
