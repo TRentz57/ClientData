@@ -21,6 +21,7 @@
         </div>
         <div>
             <br />
+            <table id="personalInfo" align="center" border="0">
                 <tr>
                     <th colspan ="2" align="center">
                         Personal Info
