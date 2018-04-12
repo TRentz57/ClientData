@@ -38,12 +38,12 @@ public partial class ClientData : System.Web.UI.Page
         da.Fill(ds,"UserData");
 
         //Generate next number for Participant ID
-        //cmd.CommandText = "SELECT ParticipantID FROM Vitals ORDER BY ParticipantID DESC";
-        //SqlDataReader reader = cmd.ExecuteReader();
-        //reader.Read();
-        //maxID = Convert.ToInt32(reader[0]); //gets max value
-        //maxID++; // max value + 1
-        //Session["participantID"] = maxID;
+        cmd.CommandText = "SELECT ParticipantID FROM UserProfile ORDER BY ParticipantID DESC";
+        SqlDataReader reader = cmd.ExecuteReader();
+        reader.Read();
+        maxID = Convert.ToInt32(reader[0]); //gets max value
+        maxID++; // max value + 1
+        Session["participantID"] = maxID;
 
 
         if (ds.Tables[0].Rows.Count > 0)//Test if any rows username and password match. Search through the column and get permission
@@ -64,6 +64,7 @@ public partial class ClientData : System.Web.UI.Page
             Session["lastName"] = lastName;
 
             Response.Redirect("MainMenu.aspx", false);
+            con.Close();
         }
         else
         {
